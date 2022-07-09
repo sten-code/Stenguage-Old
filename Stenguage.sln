@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stenguage", "Stenguage\Stenguage.csproj", "{FFA700CB-168C-4614-B46E-2E702CACF1C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{0B1593E3-7BA2-423D-817F-5A2FAF600F1E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardLibrary", "StandardLibrary\StandardLibrary.csproj", "{28EF7F05-8156-47B9-B5C3-99CF6DF5F328}"
 EndProject
 Global
