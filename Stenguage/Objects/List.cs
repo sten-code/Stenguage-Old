@@ -46,7 +46,7 @@ namespace Stenguage.Objects
             return (null, IllegalOperation(other));
         }
 
-        public override (Object, Error) Index(Object other)
+        public override (Object, Error) GetIndex(Object other)
         {
             if (other is Number)
             {
@@ -61,6 +61,26 @@ namespace Stenguage.Objects
                 }
             }
             return (null, IllegalOperation(other));
+        }
+
+        public override (Object, Error) SetIndex(Object index, Object value)
+        {
+            if (index is Number)
+            {
+                try
+                {
+                    Object[] elements = new Object[Elements.Count];
+                    Elements.CopyTo(elements);
+                    int.TryParse(((Number)index).Value.ToString(), out int i);
+                    elements[i] = value;
+
+                    return (new List(elements.ToList()), null);
+                } catch
+                {
+                    return (null, new RuntimeError(Start, End, "Index out of bounds.", Context));
+                }
+            }
+            return (null, IllegalOperation(index));
         }
 
         public override Object Copy()

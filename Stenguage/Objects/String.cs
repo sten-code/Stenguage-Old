@@ -21,10 +21,8 @@ namespace Stenguage.Objects
             {
                 return (new String(Value + ((Number)other).Value).SetContext(Context), null);
             }
-            else
-            {
-                return (null, IllegalOperation(other));
-            }
+            return (null, IllegalOperation(other));
+
         }
 
         public override (Object, Error) MultipliedBy(Object other)
@@ -34,13 +32,11 @@ namespace Stenguage.Objects
                 int amount = int.Parse(((Number)other).Value.ToString());
                 return (new String(Value.Repeat(amount)).SetContext(Context), null);
             }
-            else
-            {
-                return (null, IllegalOperation(other));
-            }
+            return (null, IllegalOperation(other));
+
         }
 
-        public override (Object, Error) Index(Object other)
+        public override (Object, Error) GetIndex(Object other)
         {
             if (other is Number)
             {
@@ -55,6 +51,22 @@ namespace Stenguage.Objects
                 }
             }
             return (null, IllegalOperation(other));
+        }
+        
+        public override (Object, Error) SetIndex(Object index, Object value)
+        {
+            if (index is Number)
+            {
+                if (int.TryParse(((Number)index).Value.ToString(), out int i))
+                {
+                    return (new String(Value.Remove(i, 1).Insert(i, value.ToString())), null);
+                }
+                else
+                {
+                    return (null, new RuntimeError(Start, index.End, "The index given wasn't a valid number.", Context));
+                }
+            }
+            return (null, IllegalOperation(index));
         }
 
         public override Object Copy()

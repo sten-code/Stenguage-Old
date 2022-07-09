@@ -14,13 +14,22 @@ namespace Stenguage.Objects
             Value = value;
         }
 
+        public override (Object, Error) AddedTo(Object other)
+        {
+            if (other is String)
+            {
+                return (new String(Value + ((String)other).Value), null);
+            }
+            return (null, IllegalOperation(other));
+        }
+
         public override (Boolean, Error) GetComparisonEE(Object other)
         {
             if (other is Boolean)
             {
                 return ((Boolean)new Boolean(Value == ((Boolean)other).Value).SetContext(Context), null);
             }
-            return (null, null);
+            return (null, IllegalOperation(other));
         }
 
         public override (Boolean, Error) GetComparisonNE(Object other)
@@ -29,7 +38,7 @@ namespace Stenguage.Objects
             {
                 return ((Boolean)new Boolean(Value != ((Boolean)other).Value).SetContext(Context), null);
             }
-            return (null, null);
+            return (null, IllegalOperation(other));
         }
 
         public override (Boolean, Error) And(Object other)
@@ -38,7 +47,7 @@ namespace Stenguage.Objects
             {
                 return ((Boolean)new Boolean(Value && ((Boolean)other).Value).SetContext(Context), null);
             }
-            return (null, new InvalidSyntaxError(Start, other.End, "Can only do 'and' operation with other booleans"));
+            return (null, IllegalOperation(other));
         }
 
         public override (Boolean, Error) Or(Object other)
@@ -47,7 +56,7 @@ namespace Stenguage.Objects
             {
                 return ((Boolean)new Boolean(Value && ((Boolean)other).Value).SetContext(Context), null);
             }
-            return (null, new InvalidSyntaxError(Start, other.End, "Can only do 'or' operation with other booleans"));
+            return (null, IllegalOperation(other));
         }
 
         public override (Boolean, Error) Not()

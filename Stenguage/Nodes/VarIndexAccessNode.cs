@@ -20,13 +20,14 @@ namespace Stenguage.Nodes
         public override RuntimeResult Visit(Context context)
         {
             RuntimeResult res = new RuntimeResult();
-            Object obj = res.Register(IndexNode.Visit(context)).SetPosition(Start, End).SetContext(context);
+
+            Object index = res.Register(IndexNode.Visit(context));
             if (res.ShouldReturn()) return res;
 
-            (Object num, Error error) = context.SymbolTable.Get(ObjectToken.Value).Index(obj);
-
+            (Object num, Error error) = context.SymbolTable.Get(ObjectToken.Value).GetIndex(index);
             if (error != null) return res.Failure(error);
-            else return res.Success(num.SetPosition(Start, End));
+            
+            return res.Success(num.SetPosition(Start, End));
         }
     }
 }

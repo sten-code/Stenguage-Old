@@ -1,5 +1,4 @@
 ﻿using Stenguage.Errors;
-using Stenguage.Objects.Functions;
 
 namespace Stenguage.Objects
 {
@@ -12,13 +11,22 @@ namespace Stenguage.Objects
             Value = value;
         }
 
+        public override (Object, Error) AddedTo(Object other)
+        {
+            if (other is String)
+            {
+                return (new String(Value + ((String)other).Value).SetContext(Context), null);
+            }
+            return (null, IllegalOperation(other));
+        }
+
         public override (Boolean, Error) GetComparisonEE(Object other)
         {
             if (other is ObjectType)
             {
                 return ((Boolean)new Boolean(Value.Equals(((ObjectType)other).Value)).SetContext(Context), null);
             }
-            return (null, null);
+            return (null, IllegalOperation(other));
         }
 
         public override (Boolean, Error) GetComparisonNE(Object other)
@@ -27,7 +35,7 @@ namespace Stenguage.Objects
             {
                 return ((Boolean)new Boolean(!Value.Equals(((ObjectType)other).Value)).SetContext(Context), null);
             }
-            return (null, null);
+            return (null, IllegalOperation(other));
         }
 
         public override Object Copy()

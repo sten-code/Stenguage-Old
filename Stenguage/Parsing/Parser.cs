@@ -46,7 +46,7 @@ namespace Stenguage.Parsing
             ParseResult res = Statements();
             if (res.Error == null && CurrentToken.Type != Token.TT_EOF)
             {
-                return res.Failure(new InvalidSyntaxError(CurrentToken.Start, CurrentToken.End, "Expected '+', '-', '*', '/', '^', '==', '!=', '<', '>', <=', '>=', 'AND' or 'OR'"));
+                return res.Failure(new InvalidSyntaxError(CurrentToken.Start, CurrentToken.End, "Expected '+', '-', '*', '/', '^', '==', '!=', '<', '>', <=', '>=', 'and' or 'or'"));
             }
             return res;
         }
@@ -725,7 +725,7 @@ namespace Stenguage.Parsing
             }
 
             node = (Node)res.Register(BinaryOperation(ArithExpr, new (string, string)[] { (Token.TT_EE, ""), (Token.TT_NE, ""), (Token.TT_LT, ""), (Token.TT_GT, ""), (Token.TT_LTE, ""), (Token.TT_GTE, "") }));
-            if (res.Error != null) return res.Failure(new InvalidSyntaxError(CurrentToken.Start, CurrentToken.End, "Expected int, float, identifier, '+', '-', '(', '[' or 'not'"));
+            if (res.Error != null) return res;
             return res.Success(node);
         }
 
@@ -785,16 +785,41 @@ namespace Stenguage.Parsing
                     Node expr = (Node)res.Register(Expr());
                     if (res.Error != null) return res;
 
-                    return res.Success(new ListItemAssignNode(varName, indexNode, expr));
+                    return res.Success(new VarIndexAssignNode(varName, indexNode, expr));
                 }
                 else
                 {
                     return res.Failure(new InvalidSyntaxError(CurrentToken.Start, CurrentToken.End, "Expected '=' or '['"));
                 }
             }
+            if (CurrentToken.Type == Token.TT_IDENTIFIER)
+            {
+                Token varName = CurrentToken;
+                res.RegisterAdvancement();
+                Advance();
+                if (new string[] { Token.TT_PLUS, Token.TT_MINUS, Token.TT_MUL, Token.TT_DIV }.Contains(CurrentToken.Type))
+                {
+                    Token token = CurrentToken;
+                    res.RegisterAdvancement();
+                    Advance();
 
-            Node node = (Node)res.Register(BinaryOperation(CompExpr, new (string, string)[] { (Token.TT_KEYWORD, "AND"), (Token.TT_KEYWORD, "OR") }));
-            if (res.Error != null) return res.Failure(new InvalidSyntaxError(CurrentToken.Start, CurrentToken.End, "Expected 'var', 'if', 'for', 'while', 'func', int, float, identifier, '+', '-', '(', '[' or 'not'"));
+                    if (CurrentToken.Type == Token.TT_EQ)
+                    {
+                        res.RegisterAdvancement();
+                        Advance();
+
+                        Node expr = (Node)res.Register(Expr());
+                        if (res.Error != null) return res.Failure(new InvalidSyntaxError(CurrentToken.Start, CurrentToken.End, "Expected 'var', 'if', 'for', 'while', 'func', int, float, identifier, '+', '-', '(', '[' or 'not'"));
+
+                        return res.Success(new VarAssignNode(varName, expr, token));
+                    }
+                    Reverse();
+                }
+                Reverse();
+            }
+
+            Node node = (Node)res.Register(BinaryOperation(CompExpr, new (string, string)[] { (Token.TT_KEYWORD, "and"), (Token.TT_KEYWORD, "or") }));
+            if (res.Error != null) return res;
 
             return res.Success(node);
         }

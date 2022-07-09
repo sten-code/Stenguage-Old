@@ -28,9 +28,14 @@ namespace Stenguage.Objects
             return this;
         }
 
-        public virtual (Object, Error) Index(Object other)
+        public virtual (Object, Error) GetIndex(Object other)
         {
             return (null, IllegalOperation(other));
+        }
+
+        public virtual (Object, Error) SetIndex(Object index, Object value)
+        {
+            return (null, IllegalOperation(index));
         }
 
         public virtual (Object, Error) AddedTo(Object other)
@@ -60,12 +65,12 @@ namespace Stenguage.Objects
 
         public virtual (Boolean, Error) GetComparisonEE(Object other)
         {
-            return (null, IllegalOperation(other));
+            return (new Boolean(Value.Equals(other.Value)), null);
         }
 
         public virtual (Boolean, Error) GetComparisonNE(Object other)
         {
-            return (null, IllegalOperation(other));
+            return (new Boolean(!Value.Equals(other.Value)), null);
         }
 
         public virtual (Boolean, Error) GetComparisonLT(Object other)
@@ -109,6 +114,11 @@ namespace Stenguage.Objects
         {
             if (other == null) other = this;
             return new RuntimeError(Start, other.End, "Illegal operation", Context);
+        }
+
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
 }
