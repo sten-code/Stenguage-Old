@@ -1,4 +1,5 @@
 ﻿using Stenguage.Errors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace Stenguage.Objects
 
         public override (Object, Error) AddedTo(Object other)
         {
-            List list = (List)Copy();
+            List list = (List)MemberwiseClone();
             if (other is List)
             {
                 list.Elements.AddRange(((List)other).Elements);
@@ -31,7 +32,7 @@ namespace Stenguage.Objects
         {
             if (other is Number)
             {
-                List list = (List)Copy();
+                List list = (List)MemberwiseClone();
                 try
                 {
                     int index = int.Parse(((Number)other).Value.ToString());
@@ -83,17 +84,10 @@ namespace Stenguage.Objects
             return (null, IllegalOperation(index));
         }
 
-        public override Object Copy()
-        {
-            List copy = new List(Elements);
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
         public override string ToString()
         {
             return $"[{string.Join(", ", Elements.Select(x => x.ToString()))}]";
         }
+
     }
 }

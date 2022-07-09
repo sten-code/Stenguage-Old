@@ -29,12 +29,5 @@ namespace Stenguage.Objects.Functions
             return res.Success(AutoReturn ? value : res.FuncReturnValue != null ? res.FuncReturnValue : Number.Null);
         }
 
-        public override Object Copy()
-        {
-            Function copy = new Function(Name, BodyNode, ArgNames, AutoReturn);
-            copy.SetContext(Context);
-            copy.SetPosition(Start, End);
-            return copy;
-        }
     }
 }

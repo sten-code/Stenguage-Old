@@ -15,13 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number((float)System.Math.Tan(context.SymbolTable.Get<Number>("value").Value)));
         }
 
-        public override Object Copy()
-        {
-            Tan copy = new Tan();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

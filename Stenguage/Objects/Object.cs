@@ -1,8 +1,9 @@
 ﻿using Stenguage.Errors;
+using System;
 
 namespace Stenguage.Objects
 {
-    public abstract class Object
+    public abstract class Object : ICloneable
     {
         public Position Start;
         public Position End;
@@ -108,8 +109,6 @@ namespace Stenguage.Objects
             return (null, IllegalOperation());
         }
 
-        public abstract Object Copy();
-
         public Error IllegalOperation(Object other = null)
         {
             if (other == null) other = this;
@@ -119,6 +118,11 @@ namespace Stenguage.Objects
         public override string ToString()
         {
             return Value.ToString();
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

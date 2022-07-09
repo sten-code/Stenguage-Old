@@ -64,14 +64,6 @@ namespace Stenguage.Objects
             return ((Boolean)new Boolean(!Value).SetContext(Context), null);
         }
 
-        public override Object Copy()
-        {
-            Boolean copy = new Boolean(Value);
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
         public override string ToString()
         {
             return Value.ToString();

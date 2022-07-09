@@ -15,12 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new String(context.SymbolTable.Get<String>("str").Value.ToUpper()));
         }
 
-        public override Object Copy()
-        {
-            ToUpper copy = new ToUpper();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

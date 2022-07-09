@@ -30,12 +30,5 @@ namespace Stenguage.Objects.Functions
             return res.Failure(new RuntimeError(Start, End, $"The object given isn't a valid type, valid types: 'String', 'Number' and 'List'", context));
         }
 
-        public override Object Copy()
-        {
-            LenFunction copy = new LenFunction();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

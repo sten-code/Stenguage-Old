@@ -13,12 +13,5 @@ namespace Stenguage.Objects.Functions
             return new RuntimeResult().Success(new String(input));
         }
 
-        public override Object Copy()
-        {
-            InputFunction copy = new InputFunction();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

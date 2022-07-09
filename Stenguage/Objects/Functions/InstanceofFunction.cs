@@ -19,12 +19,5 @@ namespace Stenguage.Objects.Functions
             return new RuntimeResult().Success(new ObjectType(type));
         }
 
-        public override Object Copy()
-        {
-            InstanceofFunction copy = new InstanceofFunction();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

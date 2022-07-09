@@ -15,13 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number(context.SymbolTable.Get<Number>("value").Value % context.SymbolTable.Get<Number>("mod").Value));
         }
 
-        public override Object Copy()
-        {
-            Ceiling copy = new Ceiling();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

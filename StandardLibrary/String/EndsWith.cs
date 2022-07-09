@@ -15,12 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Boolean(context.SymbolTable.Get<String>("str").Value.EndsWith(context.SymbolTable.Get<String>("value").Value)));
         }
 
-        public override Object Copy()
-        {
-            EndsWith copy = new EndsWith();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

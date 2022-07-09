@@ -19,12 +19,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(list);
         }
 
-        public override Object Copy()
-        {
-            Split copy = new Split();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

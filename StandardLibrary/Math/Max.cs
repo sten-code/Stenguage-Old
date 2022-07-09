@@ -15,13 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number((float)System.Math.Max(context.SymbolTable.Get<Number>("value").Value, context.SymbolTable.Get<Number>("value2").Value)));
         }
 
-        public override Object Copy()
-        {
-            Max copy = new Max();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

@@ -14,13 +14,5 @@ namespace StandardLibrary
         {
             return new RuntimeResult().Success(new Number(context.SymbolTable.Get<String>("str").Value.LastIndexOf(context.SymbolTable.Get<String>("value").Value)));
         }
-
-        public override Object Copy()
-        {
-            LastIndexOf copy = new LastIndexOf();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

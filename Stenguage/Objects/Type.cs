@@ -38,14 +38,6 @@ namespace Stenguage.Objects
             return (null, IllegalOperation(other));
         }
 
-        public override Object Copy()
-        {
-            ObjectType copy = new ObjectType(Value);
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
         public override string ToString()
         {
             return Value.Name;

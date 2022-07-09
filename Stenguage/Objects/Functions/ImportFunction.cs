@@ -85,12 +85,5 @@ namespace Stenguage.Objects.Functions
             }
         }
 
-        public override Object Copy()
-        {
-            ImportFunction copy = new ImportFunction();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

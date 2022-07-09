@@ -122,14 +122,6 @@ namespace Stenguage.Objects
             return (null, IllegalOperation(other));
         }
 
-        public override Object Copy()
-        {
-            Number copy = new Number(Value);
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
         public override string ToString()
         {
             return Value.ToString();

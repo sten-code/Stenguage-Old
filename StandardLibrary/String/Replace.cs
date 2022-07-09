@@ -15,12 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new String(context.SymbolTable.Get<String>("value").Value.Replace(context.SymbolTable.Get<String>("old").Value, context.SymbolTable.Get<String>("new").Value)));
         }
 
-        public override Object Copy()
-        {
-            Replace copy = new Replace();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

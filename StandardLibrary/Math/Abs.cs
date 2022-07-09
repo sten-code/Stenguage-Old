@@ -15,13 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number((float)System.Math.Abs(context.SymbolTable.Get<Number>("value").Value)));
         }
 
-        public override Object Copy()
-        {
-            Abs copy = new Abs();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

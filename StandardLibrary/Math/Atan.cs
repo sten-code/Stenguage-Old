@@ -15,13 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number((float)System.Math.Atan(context.SymbolTable.Get<Number>("value").Value)));
         }
 
-        public override Object Copy()
-        {
-            Atan copy = new Atan();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

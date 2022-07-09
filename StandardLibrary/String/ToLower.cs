@@ -15,12 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new String(context.SymbolTable.Get<String>("str").Value.ToLower()));
         }
 
-        public override Object Copy()
-        {
-            ToLower copy = new ToLower();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

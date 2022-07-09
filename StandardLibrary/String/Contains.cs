@@ -15,12 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Boolean(context.SymbolTable.Get<String>("str").Value.Contains(context.SymbolTable.Get<String>("value").Value)));
         }
 
-        public override Object Copy()
-        {
-            Contains copy = new Contains();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

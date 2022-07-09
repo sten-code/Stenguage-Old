@@ -12,12 +12,5 @@ namespace Stenguage.Objects.Functions
             return new RuntimeResult().Success(new String(context.SymbolTable.Get("value").ToString()));
         }
 
-        public override Object Copy()
-        {
-            StrFunction copy = new StrFunction();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

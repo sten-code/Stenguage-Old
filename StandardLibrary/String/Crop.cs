@@ -30,12 +30,5 @@ namespace StandardLibrary
             }
         }
 
-        public override Object Copy()
-        {
-            Crop copy = new Crop();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

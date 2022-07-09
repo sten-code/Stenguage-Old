@@ -14,12 +14,5 @@ namespace Stenguage.Objects.Functions
             return new RuntimeResult().Success(Number.Null);
         }
 
-        public override Object Copy()
-        {
-            PrintFunction copy = new PrintFunction();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

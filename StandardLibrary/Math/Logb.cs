@@ -15,13 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number((float)System.Math.Log(context.SymbolTable.Get<Number>("value").Value, context.SymbolTable.Get<Number>("base").Value)));
         }
 
-        public override Object Copy()
-        {
-            Logb copy = new Logb();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

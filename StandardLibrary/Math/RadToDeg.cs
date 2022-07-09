@@ -15,12 +15,5 @@ namespace StandardLibrary
             return new RuntimeResult().Success(new Number((float)(context.SymbolTable.Get<Number>("value").Value*180/System.Math.PI)));
         }
 
-        public override Object Copy()
-        {
-            RadToDeg copy = new RadToDeg();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
     }
 }

@@ -23,13 +23,5 @@ namespace StandardLibrary
             }
         }
 
-        public override Object Copy()
-        {
-            Round copy = new Round();
-            copy.SetPosition(Start, End);
-            copy.SetContext(Context);
-            return copy;
-        }
-
     }
 }

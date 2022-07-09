@@ -35,7 +35,7 @@ namespace Stenguage.Nodes
 
             BaseFunction callValue = (BaseFunction)res.Register(NodeToCall.Visit(context));
             if (res.ShouldReturn()) return res;
-            callValue = (BaseFunction)callValue.Copy().SetPosition(Start, End).SetContext(context);
+            callValue = (BaseFunction)((BaseFunction)callValue.Clone()).SetPosition(Start, End).SetContext(context);
 
             foreach (Node argNode in ArgNodes)
             {
@@ -56,7 +56,7 @@ namespace Stenguage.Nodes
             Object value = res.Register(callValue.Execute(args));
             if (res.ShouldReturn()) return res;
             
-            value = value.Copy().SetPosition(Start, End).SetContext(context);
+            value = ((Object)value.Clone()).SetPosition(Start, End).SetContext(context);
             return res.Success(value);
         }
     }
